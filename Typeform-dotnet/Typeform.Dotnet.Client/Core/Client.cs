@@ -46,11 +46,11 @@ namespace Typeform.Dotnet.Core
         }
 
         protected virtual ClientResponse<T> Get<T>(Dictionary<string, string> headers = null,
-            Dictionary<string, string> parameters = null, string resource = null, string formId = null) where T : class
+            Dictionary<string, string> parameters = null, string resource = null, string formId = null, bool jsonContentType = true) where T : class
         {
             IRestClient client = BuildClient();
             IRestRequest request = BuildRequest(httpMethod: Method.GET, headers: headers, parameters: parameters,
-                resource: resource, formId: formId);
+                resource: resource, formId: formId, jsonContentType: jsonContentType);
             IRestResponse response = client.Execute(request);
 
             var clientResponse = HandleResponse<T>(response);
@@ -86,7 +86,7 @@ namespace Typeform.Dotnet.Core
 
         protected virtual IRestRequest BuildRequest(Method httpMethod = Method.GET,
             Dictionary<string, string> headers = null, Dictionary<string, string> parameters = null, string body = null,
-            string resource = null, string formId = null)
+            string resource = null, string formId = null, bool jsonContentType = true)
         {
             string finalResource = string.IsNullOrEmpty(resource) ? Resource : resource;
 
@@ -97,7 +97,9 @@ namespace Typeform.Dotnet.Core
             if (finalResource.Contains(FormIdUrlReplacementParameter))
                 request.AddParameter(FormIdUrlReplacementName, formId, ParameterType.UrlSegment);
 
-            request.AddHeader(ContentTypeHeader, ContentTypeValue);
+            if(jsonContentType)
+                request.AddHeader(ContentTypeHeader, ContentTypeValue);
+
             request.AddHeader(AcceptCharsetHeader, AcceptCharsetValue);
             request.AddHeader(AcceptHeader, AcceptValue);
             request.AddHeader(UserAgentHeader, UserAgentValue);

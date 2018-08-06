@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Typeform.Dotnet</RootNamespace>
     <AssemblyName>Typeform.Dotnet</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,11 +50,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clients\FormClient.cs" />
+    <Compile Include="Clients\ResponsesApiClient.cs" />
+    <Compile Include="Core\AccessTokenAuthenticator.cs" />
     <Compile Include="Core\ApiKeyAuthenticator.cs" />
     <Compile Include="Core\Authentication.cs" />
     <Compile Include="Core\BooleanConverter.cs" />
     <Compile Include="Core\Client.cs" />
     <Compile Include="Core\ClientResponse.cs" />
+    <Compile Include="Data\ApiResponses\Answer.cs" />
+    <Compile Include="Data\ApiResponses\AnswerBoolean.cs" />
+    <Compile Include="Data\ApiResponses\AnswerChoice.cs" />
+    <Compile Include="Data\ApiResponses\AnswerLongText.cs" />
+    <Compile Include="Data\ApiResponses\ApiResponseItem.cs" />
+    <Compile Include="Data\ApiResponses\ApiResponses.cs" />
+    <Compile Include="Data\ApiResponses\Choice.cs" />
+    <Compile Include="Data\ApiResponses\Field.cs" />
+    <Compile Include="Data\Converters\BaseSpecifiedConcreteClassConverter.cs" />
     <Compile Include="Data\Error.cs" />
     <Compile Include="Data\Errors.cs" />
     <Compile Include="Data\FormResponse.cs" />
